@@ -497,20 +497,48 @@ function parseList(str){
 }
 
 function buildToothMap(d){
+  // Simpan SEMUA status per gigi, terurut dari paling serius:
+  // dicabut (c) > saraf (s) > berlubang (b) > ompong (o)
+  const ORDER=['c','s','b','o'];
+  const COLOR={b:'#D4A017',c:'#6D28D9',s:'#C0392B',o:'#2D9E7A'};
+  const tmp={};
+  const apply=(list,cat)=>parseList(list).forEach(n=>{
+    if(!tmp[n]) tmp[n]={};
+    tmp[n][cat]=true;
+  });
+  apply(d.gigiB,'b');
+  apply(d.gigiC,'c');
+  apply(d.gigiS,'s');
+  apply(d.gigiO,'o');
   const map={};
-  parseList(d.gigiB).forEach(n=>map[n]='b');
-  parseList(d.gigiC).forEach(n=>map[n]='c');
-  parseList(d.gigiS).forEach(n=>map[n]='s');
-  parseList(d.gigiO).forEach(n=>map[n]='o');
+  Object.keys(tmp).forEach(n=>{
+    map[n]=ORDER.filter(c=>tmp[n][c]);   // daftar status terurut
+  });
+  map._COLOR=COLOR;
   return map;
+}
+
+function toothStyle(cats, COLOR){
+  if(!cats || cats.length===0) return '';   // normal → pakai class tb-n (CSS)
+  if(cats.length===1){
+    const c=COLOR[cats[0]];
+    return 'background:'+c+';border-color:'+c+';color:#fff;box-shadow:0 0 0 2px rgba(0,0,0,.06)';
+  }
+  // 2+ status → bagi rata jadi irisan vertikal
+  const n=cats.length;
+  const step=100/n;
+  const stops=cats.map((c,i)=>COLOR[c]+' '+(i*step).toFixed(2)+'% '+((i+1)*step).toFixed(2)+'%').join(',');
+  return 'background:linear-gradient(90deg,'+stops+');border-color:#7A5C3E;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.55);box-shadow:0 0 0 2px rgba(0,0,0,.06)';
 }
 
 function renderArch(elId, teeth, map){
   const el=document.getElementById(elId);
   if(!el) return;
+  const COLOR=map._COLOR||{b:'#D4A017',c:'#6D28D9',s:'#C0392B',o:'#2D9E7A'};
   el.innerHTML = teeth.map(n=>{
-    const cat = map[n] ? 'tb-'+map[n] : 'tb-n';
-    return '<div class="tb '+cat+'">'+n+'</div>';
+    const cats = map[n];
+    if(!cats || cats.length===0) return '<div class="tb tb-n">'+n+'</div>';
+    return '<div class="tb" style="'+toothStyle(cats,COLOR)+'">'+n+'</div>';
   }).join('');
 }
 
