@@ -484,6 +484,27 @@ function closeModal(){
 }
 
 buildGrids();
+
+/* ===== Auto-height untuk embed iframe di WordPress =====
+   Kirim tinggi konten ke halaman induk agar iframe menyesuaikan,
+   sehingga tidak ada scroll ganda. */
+(function(){
+  function kirimTinggi(){
+    var h = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight
+    );
+    parent.postMessage({ dentalLiteHeight: h }, '*');
+  }
+  window.addEventListener('load', kirimTinggi);
+  window.addEventListener('resize', kirimTinggi);
+  // Kirim ulang saat isi berubah (tambah tips, pilih gigi, dsb.)
+  if (window.ResizeObserver) {
+    new ResizeObserver(kirimTinggi).observe(document.body);
+  } else {
+    setInterval(kirimTinggi, 1000);
+  }
+})();
 </script>
 </body>
 </html>
