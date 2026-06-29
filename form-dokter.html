@@ -253,6 +253,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
       <button class="btn-mx" onclick="openPreview()">👁️ Buka Lagi</button>
       <button class="btn-mx" onclick="closeModal()">Tutup &amp; Perbaiki</button>
     </div>
+    <div class="modal-actions" id="modal-baru" style="margin-top:10px;display:none">
+      <button class="btn-mc" onclick="inputBaru()">➕ Input Pasien Baru</button>
+    </div>
   </div>
 </div>
 
@@ -329,6 +332,37 @@ function addTip(){
 }
 function rmTip(btn){btn.parentElement.remove();renum();}
 function renum(){document.querySelectorAll('#tips-container .tip-badge').forEach((el,i)=>el.textContent=i+1);}
+
+function resetForm(){
+  // Kosongkan input teks
+  ['namaPasien','noHp','usia','dokterNama','keluhan','catatanDokter',
+   'note-karang','note-susunan','note-bungsu'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.value='';
+  });
+  // Reset dropdown klinik ke pilihan pertama
+  const kl=document.getElementById('klinik'); if(kl) kl.selectedIndex=0;
+  // Reset gigi terpilih + tampilan tombolnya
+  ['b','c','s','o'].forEach(cat=>{
+    SEL[cat].clear();
+    const g=document.getElementById('grid-'+cat);
+    if(g) g.querySelectorAll('.tb-btn').forEach(b=>b.className='tb-btn');
+  });
+  updateCounts();
+  // Reset status (karang/susunan/bungsu) + sembunyikan catatan
+  STAT.karang=''; STAT.susunan=''; STAT.bungsu='';
+  document.querySelectorAll('.sopt').forEach(b=>b.className='sopt');
+  document.querySelectorAll('[id^="note-wrap-"]').forEach(w=>w.classList.remove('show'));
+  // Reset template catatan dokter
+  activeTpls.clear();
+  document.querySelectorAll('.tpl-btn.active, .tpl.active').forEach(b=>b.classList.remove('active'));
+  // Reset tips: sisakan satu baris kosong
+  const tc=document.getElementById('tips-container');
+  if(tc){ tc.innerHTML=''; addTip(); }
+  // Centang tindakan dikosongkan
+  document.querySelectorAll('.chk input:checked').forEach(cb=>cb.checked=false);
+  // Kembali ke atas halaman
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 
 function collect(){
   const tindakan=[...document.querySelectorAll('.chk input:checked')].map(cb=>cb.value);
@@ -416,7 +450,11 @@ async function sendForm(){
       if(sub) sub.textContent = ok
         ? 'Link rapor sudah dikirim ke WhatsApp pasien dan klinik.'
         : 'Status pengiriman: '+(r.wa||'cek manual')+'. Kamu bisa salin link di bawah dan kirim manual.';
-      kirim.textContent='✓ Terkirim'; 
+      kirim.textContent='✓ Terkirim';
+      kirim.disabled=true;
+      // Tampilkan tombol Input Pasien Baru
+      const baru=document.getElementById('modal-baru');
+      if(baru) baru.style.display='flex';
     } else {
       alert('Gagal mengirim: '+(r.message||'coba lagi.'));
       kirim.textContent=old; kirim.disabled=false;
@@ -427,6 +465,11 @@ async function sendForm(){
   }
 }
 
+function inputBaru(){
+  closeModal();
+  resetForm();
+}
+
 function copyLink(){navigator.clipboard.writeText(document.getElementById('modal-link').textContent);}
 function closeModal(){
   document.getElementById('modal').classList.remove('show');
@@ -435,6 +478,8 @@ function closeModal(){
   kirim.textContent='📤 Kirim ke WA Pasien & Klinik'; kirim.disabled=false;
   document.querySelector('.modal-icon').textContent='📄';
   document.querySelector('.modal-title').textContent='Rapor Siap Dipreview';
+  const baru=document.getElementById('modal-baru');
+  if(baru) baru.style.display='none';
   lastReport=null;
 }
 
