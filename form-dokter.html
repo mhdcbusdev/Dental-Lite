@@ -133,7 +133,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
     <div class="field"><label>No. WhatsApp</label><input type="tel" id="noHp" placeholder="08xxxxxxxxxx"></div>
     <div class="field"><label>Usia</label><input type="number" id="usia" placeholder="25" min="1" max="120"></div>
     <div class="field"><label>Klinik</label>
-      <select id="klinik"><option value="">— Pilih Klinik —</option><option>MHDC Kemang</option><option>MHDC Kelapa Gading</option><option>MHDC Pondok Indah</option><option>MHDC Bintaro</option><option>Medikids Kemang</option><option>Medikids BSD</option></select>
+      <select id="klinik"><option value="">— Pilih Klinik —</option><option>Test</option><option>MHDC Bulog</option><option>MHDC Kalibata City</option><option>MHDC Menara Sentraya</option><option>MHDC Wisma 46</option><option>Medikids Batam</option><option>Medikids Bekasi</option><option>Medikids Bintaro</option><option>Medikids Bogor</option><option>Medikids BSD</option><option>Medikids Cibinong</option><option>Medikids Cibubur</option><option>Medikids Cikarang</option><option>Medikids Cikupa</option><option>Medikids Cilegon</option><option>Medikids Cipondoh</option><option>Medikids Dago</option><option>Medikids Depok</option><option>Medikids Grand Wisata</option><option>Medikids Green Terrace</option><option>Medikids JGC</option><option>Medikids Kalimalang</option><option>Medikids Karawang</option><option>Medikids Karawaci</option><option>Medikids Kebon Jeruk</option><option>Medikids Kemang</option><option>Medikids Lebak Bulus</option><option>Medikids Makassar</option><option>Medikids Malang</option><option>Medikids Padang</option><option>Medikids Palembang</option><option>Medikids Pancoran Mas</option><option>Medikids Pondok Indah</option><option>Medikids Rawamangun</option><option>Medikids Rempoa</option><option>Medikids RSBL</option><option>Medikids Sawangan</option><option>Medikids Semarang</option><option>Medikids Serpong (Ciater BSD)</option><option>Medikids Solo</option><option>Medikids Sunter</option><option>Medikids Surabaya</option></select>
     </div>
     <div class="field"><label>Dokter Pemeriksa</label><input type="text" id="dokterNama" placeholder="drg. Nama Dokter, Sp.KG"></div>
   </div>
@@ -363,7 +363,7 @@ function collect(){
 }
 
 /* GANTI dengan Web App URL hasil deploy Apps Script (Code.gs) */
-const WEBAPP_URL='https://script.google.com/macros/s/AKfycbxdRv7Kp7PjPFaag14KH1aV3LJQhe14HnrALTr0tScXj9Fud0mQKT_CDu06DuBInFm3NA/exec';
+const WEBAPP_URL='https://script.google.com/macros/s/AKfycbwAw6trnY5QVs_brs1sJG_XoeqcXXh7DMd4AvH0hL1k8kFhzIfCdPxdueV3MeW19Ovs_w/exec';
 async function submitForm(){
   const data=collect();
   if(!data.namaPasien||!data.noHp||!data.klinik){alert('Lengkapi: Nama Pasien, No. WhatsApp, dan Klinik.');return;}
