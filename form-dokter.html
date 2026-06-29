@@ -366,7 +366,7 @@ function collect(){
 }
 
 /* GANTI dengan Web App URL hasil deploy Apps Script (Code.gs) */
-const GAS_URL='https://script.google.com/macros/s/AKfycbwGvdJ8kaDYdc4wFfMoEYJ8WMpHr0LKfgWMslgVodrdp18fAqy9-jmJGFkw9bBoiBN1RA/exec';
+const WEBAPP_URL='https://script.google.com/macros/s/AKfycbxdRv7Kp7PjPFaag14KH1aV3LJQhe14HnrALTr0tScXj9Fud0mQKT_CDu06DuBInFm3NA/exec';
 async function submitForm(){
   const data=collect();
   if(!data.namaPasien||!data.noHp||!data.klinik){alert('Lengkapi: Nama Pasien, No. WhatsApp, dan Klinik.');return;}
@@ -376,7 +376,7 @@ async function submitForm(){
   btn.disabled=true;
   try{
     // text/plain = hindari CORS preflight yang tidak bisa dijawab Apps Script
-    const res=await fetch(GAS_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data)});
+    const res=await fetch(WEBAPP_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data)});
     const r=await res.json();
     if(r.status==='ok'){
       document.getElementById('modal-link').textContent=r.link;
