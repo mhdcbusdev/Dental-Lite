@@ -51,9 +51,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
 .cat-dot{width:11px;height:11px;border-radius:3px;flex-shrink:0}
 .cat-lbl{font-size:12px;font-weight:700;color:var(--text)}
 .cat-lbl span{font-weight:400;color:var(--text-soft);margin-left:4px}
-.tooth-grid{display:grid;grid-template-columns:repeat(16,1fr);gap:5px}
-@media(max-width:560px){.tooth-grid{grid-template-columns:repeat(8,1fr)}}
-.tb-btn{width:100%;min-width:0;aspect-ratio:1/1;height:auto;border-radius:8px;border:1.5px solid var(--olive-md);background:#fff;color:var(--text-soft);font-size:11px;font-weight:600;font-family:var(--font);cursor:pointer;transition:all .12s;display:flex;align-items:center;justify-content:center;padding:0;box-sizing:border-box}
+.tooth-grid{display:flex;flex-wrap:wrap;gap:5px}
+.tb-btn{width:36px;height:36px;border-radius:8px;border:1.5px solid var(--olive-md);background:#fff;color:var(--text-soft);font-size:11px;font-weight:600;font-family:var(--font);cursor:pointer;transition:all .12s;display:flex;align-items:center;justify-content:center}
 .tb-btn:hover{border-color:var(--caramel);background:var(--old-lace);color:var(--text)}
 .tb-btn.sel-b{background:var(--c-berlubang);border-color:var(--c-berlubang);color:#fff;box-shadow:0 0 0 2px rgba(212,160,23,.25)}
 .tb-btn.sel-c{background:var(--c-cabut);border-color:var(--c-cabut);color:#fff;box-shadow:0 0 0 2px rgba(109,40,217,.25)}
@@ -95,6 +94,10 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
 .tip-rm:hover{background:rgba(192,57,43,.08);border-color:var(--c-saraf);color:var(--c-saraf)}
 .btn-add-tip{display:inline-flex;align-items:center;gap:6px;margin-top:6px;background:none;border:1.5px dashed var(--olive-md);border-radius:10px;padding:7px 15px;font-size:12px;font-weight:600;color:var(--olive);cursor:pointer;font-family:var(--font);transition:all .12s}
 .btn-add-tip:hover{border-color:var(--caramel);color:var(--caramel)}
+.btn-generate{display:flex;align-items:center;gap:8px;width:100%;background:linear-gradient(135deg,var(--teal-lt),#D4F0EC);border:1.5px solid var(--teal-mid);border-radius:12px;padding:13px 18px;font-family:var(--font);font-size:13.5px;font-weight:600;color:var(--teal-dk);cursor:pointer;transition:all .15s;text-align:left}
+.btn-generate:hover{background:linear-gradient(135deg,#C8EDE9,#B8DDD9);border-color:var(--teal-dk)}
+.btn-generate span{font-size:16px}
+.generate-hint{font-size:11.5px;color:var(--teal-dk);background:var(--teal-lt);border-radius:8px;padding:8px 12px;margin-top:8px;line-height:1.5}
 .submit-bar{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .submit-info{font-size:13px;color:var(--text-soft);line-height:1.5}
 .submit-info strong{color:var(--text);font-weight:600}
@@ -131,7 +134,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
     <div class="field"><label>No. WhatsApp</label><input type="tel" id="noHp" placeholder="08xxxxxxxxxx"></div>
     <div class="field"><label>Usia</label><input type="number" id="usia" placeholder="25" min="1" max="120"></div>
     <div class="field"><label>Klinik</label>
-      <select id="klinik"><option value="">— Pilih Klinik —</option><option>Test</option><option>MHDC Bulog</option><option>MHDC Kalibata City</option><option>MHDC Menara Sentraya</option><option>MHDC Wisma 46</option><option>Medikids Batam</option><option>Medikids Bekasi</option><option>Medikids Bintaro</option><option>Medikids Bogor</option><option>Medikids BSD</option><option>Medikids Cibinong</option><option>Medikids Cibubur</option><option>Medikids Cikarang</option><option>Medikids Cikupa</option><option>Medikids Cilegon</option><option>Medikids Cipondoh</option><option>Medikids Dago</option><option>Medikids Depok</option><option>Medikids Grand Wisata</option><option>Medikids Green Terrace</option><option>Medikids JGC</option><option>Medikids Kalimalang</option><option>Medikids Karawang</option><option>Medikids Karawaci</option><option>Medikids Kebon Jeruk</option><option>Medikids Kemang</option><option>Medikids Lebak Bulus</option><option>Medikids Makassar</option><option>Medikids Malang</option><option>Medikids Padang</option><option>Medikids Palembang</option><option>Medikids Pancoran Mas</option><option>Medikids Pondok Indah</option><option>Medikids Rawamangun</option><option>Medikids Rempoa</option><option>Medikids RSBL</option><option>Medikids Sawangan</option><option>Medikids Semarang</option><option>Medikids Serpong (Ciater BSD)</option><option>Medikids Solo</option><option>Medikids Sunter</option><option>Medikids Surabaya</option></select>
+      <select id="klinik"><option value="">— Pilih Klinik —</option><option>MHDC Kemang</option><option>MHDC Kelapa Gading</option><option>MHDC Pondok Indah</option><option>MHDC Bintaro</option><option>Medikids Kemang</option><option>Medikids BSD</option></select>
     </div>
     <div class="field"><label>Dokter Pemeriksa</label><input type="text" id="dokterNama" placeholder="drg. Nama Dokter, Sp.KG"></div>
   </div>
@@ -206,17 +209,14 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
 </div>
 
 <div class="form-section">
-  <div class="fs-header"><div class="fs-num">5</div><div><div class="fs-title">Catatan Dokter</div><div class="fs-sub">Pilih satu atau beberapa template, lalu edit seperlunya. Nama dokter diambil otomatis dari Data Pasien.</div></div></div>
-  <div class="tpl-eyebrow">Pilih Template <span>— bisa pilih lebih dari satu, klik lagi untuk batal</span></div>
-  <div class="tpl-list">
-    <button class="tpl-btn" type="button" onclick="setTpl(this,0)"><div class="tpl-num">1</div><div class="tpl-text">Gigi dalam kondisi sangat baik — pertahankan dengan pemeriksaan rutin 6 bulan sekali</div></button>
-    <button class="tpl-btn" type="button" onclick="setTpl(this,1)"><div class="tpl-num">2</div><div class="tpl-text">Terdapat sedikit plak atau tanda awal berlubang — segera lakukan pemeriksaan lanjutan</div></button>
-    <button class="tpl-btn" type="button" onclick="setTpl(this,2)"><div class="tpl-num">3</div><div class="tpl-text">Gigi bungsu perlu diperiksa lebih lanjut — rontgen disarankan untuk evaluasi lengkap</div></button>
-    <button class="tpl-btn" type="button" onclick="setTpl(this,3)"><div class="tpl-num">4</div><div class="tpl-text">Ada masalah yang butuh perhatian segera seperti karies parah atau sisa akar</div></button>
-    <button class="tpl-btn" type="button" onclick="setTpl(this,4)"><div class="tpl-num">5</div><div class="tpl-text">Susunan gigi bisa diperbaiki — konsultasi dengan dokter ortodonti untuk solusi terbaik</div></button>
-    <button class="tpl-btn" type="button" onclick="setTpl(this,5)"><div class="tpl-num">6</div><div class="tpl-text">Ada gigi yang sudah hilang (ompong) dan belum diganti — gigi tiruan disarankan</div></button>
+  <div class="fs-header"><div class="fs-num">5</div><div><div class="fs-title">Catatan Dokter</div><div class="fs-sub">Generate otomatis dari data yang sudah diisi, lalu edit seperlunya. Nama dokter diambil dari Data Pasien.</div></div></div>
+  <button type="button" class="btn-generate" onclick="generateCatatan()">
+    <span>✦</span> Generate Catatan dari Data Isian
+  </button>
+  <div class="field" style="margin-top:12px"><label>Catatan untuk Pasien</label><textarea id="catatanDokter" rows="5" placeholder="Klik tombol di atas untuk generate otomatis, atau tulis langsung..."></textarea></div>
+  <div class="generate-hint" id="generate-hint" style="display:none">
+    Catatan sudah digenerate dari data isian. Silakan baca dan edit jika perlu sebelum dikirim ke pasien.
   </div>
-  <div class="field"><label>Catatan untuk Pasien</label><textarea id="catatanDokter" rows="4" placeholder="Pilih template di atas atau tulis langsung..."></textarea></div>
 </div>
 
 <div class="form-section">
@@ -231,7 +231,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
 </div>
 
 <div class="submit-bar">
-  <div class="submit-info"><strong>Siap buat rapor?</strong><br>Klik Preview untuk lihat hasilnya dulu. WA baru dikirim setelah kamu klik Kirim.</div>
+  <div class="submit-info"><strong>Siap buat rapor?</strong><br>Preview dulu, cek isinya, baru kirim ke WA pasien &amp; klinik.</div>
   <button class="btn-submit" id="btn-submit" onclick="previewForm()">
     <span id="btn-text">👁️ Preview Rapor</span>
     <div class="spinner" id="spinner"></div>
@@ -251,6 +251,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
     </div>
     <div class="modal-actions" style="margin-top:10px">
       <button class="btn-mx" onclick="openPreview()">👁️ Buka Lagi</button>
+      <button class="btn-mx" onclick="copyLink()">Salin Link</button>
       <button class="btn-mx" onclick="closeModal()">Tutup &amp; Perbaiki</button>
     </div>
     <div class="modal-actions" id="modal-baru" style="margin-top:10px;display:none">
@@ -280,6 +281,12 @@ function buildGrids(){
 }
 
 function toggle(num,cat,btn){
+  ['b','c','s','o'].forEach(c=>{
+    if(c!==cat&&SEL[c].has(num)){
+      SEL[c].delete(num);
+      document.querySelectorAll('#grid-'+c+' .tb-btn')[ALL.indexOf(num)].className='tb-btn';
+    }
+  });
   if(SEL[cat].has(num)){SEL[cat].delete(num);btn.className='tb-btn';}
   else{SEL[cat].add(num);btn.className='tb-btn sel-'+cat;}
   updateCounts();
@@ -304,24 +311,79 @@ function selStatus(field,val,btn,cls){
   }
 }
 
-// ── MULTI-SELECT TEMPLATES ──
-const TPLS=[
-  'Gigi Anda dalam kondisi sangat baik! Tetap jaga kebersihan mulut dan lakukan pemeriksaan rutin 6 bulan sekali untuk mempertahankannya.',
-  'Terdapat sedikit plak atau tanda awal gigi berlubang. Segera lakukan pemeriksaan lanjutan untuk mencegah masalah lebih lanjut.',
-  'Gigi geraham bungsu Anda perlu diperiksa lebih lanjut untuk memastikan kondisinya. Kami sarankan melakukan rontgen untuk evaluasi yang lebih lengkap.',
-  'Ada masalah yang membutuhkan perhatian segera, seperti gigi berlubang parah atau sisa akar. Segera jadwalkan perawatan untuk mencegah komplikasi.',
-  'Susunan gigi Anda bisa diperbaiki agar lebih rapi. Konsultasikan dengan dokter ortodonti untuk mendapatkan solusi terbaik.',
-  'Terdapat gigi yang sudah hilang (ompong) dan belum diganti. Disarankan memasang gigi tiruan untuk menjaga fungsi kunyah dan kesehatan mulut.',
-];
-const activeTpls=new Set();
-function setTpl(btn,idx){
-  if(activeTpls.has(idx)){activeTpls.delete(idx);btn.classList.remove('active');}
-  else{activeTpls.add(idx);btn.classList.add('active');}
-  // Rebuild textarea from selected templates in order
-  const combined=[...activeTpls].sort((a,b)=>a-b).map(i=>TPLS[i]).join(' ');
-  document.getElementById('catatanDokter').value=combined;
-}
+// ── AUTO-GENERATE CATATAN ──
+function generateCatatan(){
+  const nama = document.getElementById('namaPasien').value.trim() || 'pasien';
+  const sorted = arr => [...arr].sort((a,b)=>a-b);
+  const parts = [];
 
+  // ── TIER: determine severity for reassurance ──
+  const hasUrgent = SEL.s.size > 0 || SEL.c.size > 0;  // saraf atau pencabutan
+  const hasMedium = SEL.b.size > 0 || STAT.karang === 'Karang gigi banyak';
+  const totalMasalah = SEL.b.size + SEL.c.size + SEL.s.size + SEL.o.size;
+
+  // ── 1. REASSURANCE ──
+  if(hasUrgent){
+    parts.push(`Dari pemeriksaan hari ini, ada beberapa kondisi gigi ${nama} yang perlu mendapat perhatian lebih lanjut.`);
+  } else if(totalMasalah > 0 || hasMedium){
+    // Don't add "ada beberapa bagian..." here if kondisi utama will say it already
+    parts.push(`Secara keseluruhan, kondisi gigi ${nama} cukup baik.`);
+  } else {
+    parts.push(`Secara keseluruhan, kondisi gigi ${nama} terlihat baik.`);
+  }
+
+  // ── 2. KONDISI UTAMA — max 1 kondisi paling penting ──
+  if(SEL.s.size > 0){
+    const gigiS = sorted(SEL.s).join(' dan ');
+    parts.push(`Ada beberapa bagian yang perlu diprioritaskan, terutama gigi ${gigiS} karena lubangnya cukup dalam dan perlu dievaluasi lebih lanjut terkait kondisi sarafnya.`);
+  } else if(SEL.b.size > 0){
+    const jml = SEL.b.size;
+    const gigiB = sorted(SEL.b).join(', ');
+    parts.push(`Ditemukan ${jml} gigi berlubang, yaitu gigi ${gigiB}, yang direkomendasikan untuk ditambal agar kerusakannya tidak semakin luas.`);
+  } else if(STAT.karang === 'Karang gigi banyak'){
+    parts.push('Karang gigi ditemukan cukup banyak di beberapa area dan disarankan untuk dibersihkan lebih menyeluruh agar kesehatan gusi tetap terjaga.');
+  }
+
+  // ── 3. PERHATIAN SEKUNDER — max 2, pilih yang paling relevan ──
+  const sekunder = [];
+
+  if(SEL.c.size > 0){
+    const gigiC = sorted(SEL.c).join(' dan ');
+    sekunder.push(`Gigi ${gigiC} juga perlu dievaluasi lebih lanjut terkait kemungkinan pencabutan.`);
+  }
+
+  if(STAT.karang === 'Karang gigi sedang' && SEL.s.size === 0 && SEL.b.size === 0){
+    sekunder.push('Masih terdapat karang gigi di beberapa area yang sebaiknya dibersihkan pada kunjungan berikutnya.');
+  }
+
+  const bungsuBermasalah = ['Ada tanda awal masalah','Memerlukan pemeriksaan lebih lanjut','Gigi impaksi','Gigi malposisi'];
+  if(bungsuBermasalah.includes(STAT.bungsu)){
+    // Try to get bungsu tooth numbers from gigi hilang or just generic
+    sekunder.push('Gigi bungsu juga sebaiknya diperiksa lebih lanjut untuk menentukan apakah memerlukan tindakan.');
+  }
+
+  if(STAT.susunan === 'Susunan gigi tidak rapi (maloklusi)'){
+    sekunder.push(`Kalau ingin memperbaiki susunan gigi, ${nama} bisa berkonsultasi dengan dokter gigi spesialis ortodonti untuk melihat pilihan perawatan yang sesuai.`);
+  }
+
+  if(SEL.o.size > 0){
+    const gigiO = sorted(SEL.o).join(' dan ');
+    sekunder.push(`Untuk gigi ${gigiO} yang sudah hilang, pilihan penggantian gigi dapat mulai didiskusikan untuk membantu menjaga fungsi kunyah dan kondisi gigi di sekitarnya.`);
+  }
+
+  // Ambil maksimal 2 perhatian sekunder
+  sekunder.slice(0, 2).forEach(s => parts.push(s));
+
+  // ── 4. NEXT STEP ──
+  if(totalMasalah === 0 && !['Karang gigi banyak','Karang gigi sedang'].includes(STAT.karang)){
+    parts.push('Pertahankan kebiasaan menjaga kebersihan gigi dan lakukan pemeriksaan rutin setiap 6 bulan sekali.');
+  } else {
+    parts.push('Rekomendasi perawatannya sudah saya urutkan di bawah supaya lebih mudah menentukan langkah berikutnya.');
+  }
+
+  document.getElementById('catatanDokter').value = parts.join(' ');
+  document.getElementById('generate-hint').style.display = 'block';
+}
 function addTip(){
   const c=document.getElementById('tips-container');
   const n=c.children.length+1;
@@ -332,6 +394,63 @@ function addTip(){
 }
 function rmTip(btn){btn.parentElement.remove();renum();}
 function renum(){document.querySelectorAll('#tips-container .tip-badge').forEach((el,i)=>el.textContent=i+1);}
+
+/* ===================================================================
+   KISARAN BIAYA — tampil di halaman rapor pasien.
+   Ubah angka di sini saja kalau tarif berubah. Kosongkan ('')
+   kalau tidak ingin menampilkan biaya untuk item tersebut.
+   =================================================================== */
+const BIAYA = {
+  saraf     : 'Rp 1.500.000 – Rp 3.500.000 / gigi',
+  tambalan  : 'Rp 300.000 – Rp 700.000 / gigi',
+  cabut     : 'Rp 250.000 – Rp 500.000',
+  scaling   : 'Rp 300.000 – Rp 600.000',
+  bungsu    : 'Rp 150.000 – Rp 350.000',
+  ortodonti : 'Rp 150.000 – Rp 350.000',
+  tiruan    : 'Rp 3.000.000 – Rp 15.000.000 (tergantung pilihan)',
+};
+
+function collect(){
+  const tindakan=[...document.querySelectorAll('.chk input:checked')].map(cb=>cb.value);
+  const tips=[...document.querySelectorAll('#tips-container input')].map(i=>i.value.trim()).filter(Boolean);
+  const sorted=arr=>[...arr].sort((a,b)=>a-b);
+  const prioritas=[];
+  if(SEL.s.size>0) prioritas.push({nama:`Evaluasi Perawatan Saraf — Gigi ${sorted(SEL.s).join(' & ')}`,detail:'Lubang cukup dalam dan perlu evaluasi lanjutan untuk menentukan perawatan yang paling sesuai.',badge:'Segera',biaya:BIAYA.saraf});
+  if(SEL.b.size>0) prioritas.push({nama:`Tambalan — ${SEL.b.size} Gigi`,detail:`Gigi ${sorted(SEL.b).join(', ')} direkomendasikan untuk ditambal agar kerusakan tidak bertambah.`,badge:'Segera',biaya:BIAYA.tambalan});
+  if(SEL.c.size>0) prioritas.push({nama:`Evaluasi Pencabutan — Gigi ${sorted(SEL.c).join(' & ')}`,detail:`Kondisi gigi ${sorted(SEL.c).join(', ')} perlu dievaluasi lebih lanjut untuk menentukan apakah pencabutan adalah langkah terbaik.`,badge:'Segera',biaya:BIAYA.cabut});
+  if(STAT.karang==='Karang gigi banyak') prioritas.push({nama:'Scaling Menyeluruh',detail:'Karang gigi ditemukan cukup banyak dan sebaiknya dibersihkan secara menyeluruh agar kesehatan gusi terjaga.',badge:'Segera',biaya:BIAYA.scaling});
+  if(STAT.karang==='Karang gigi sedang') prioritas.push({nama:'Scaling Lanjutan',detail:'Karang gigi di beberapa area perlu dibersihkan lebih menyeluruh untuk menjaga kesehatan gusi.',badge:'3 Bulan',biaya:BIAYA.scaling});
+  if(STAT.karang==='Tidak ada karang gigi') prioritas.push({nama:'Scaling Rutin',detail:'Kondisi karang gigi baik. Tetap jaga dengan scaling rutin setiap 6 bulan.',badge:'6 Bulan',biaya:BIAYA.scaling});
+  if(['Ada tanda awal masalah','Memerlukan pemeriksaan lebih lanjut','Gigi impaksi','Gigi malposisi'].includes(STAT.bungsu)) prioritas.push({nama:'Konsultasi Gigi Bungsu',detail:'Evaluasi posisi gigi bungsu untuk menentukan apakah cukup dipantau atau membutuhkan tindakan.',badge:'1–3 Bulan',biaya:BIAYA.bungsu});
+  if(STAT.susunan==='Susunan gigi tidak rapi (maloklusi)') prioritas.push({nama:'Konsultasi Ortodonti',detail:'Susunan gigi yang belum rapi sebaiknya dievaluasi dokter spesialis ortodonti untuk melihat pilihan perawatan.',badge:'1–3 Bulan',biaya:BIAYA.ortodonti});
+  if(SEL.o.size>0) prioritas.push({nama:`Diskusi Gigi Tiruan — Gigi ${sorted(SEL.o).join(' & ')}`,detail:'Gigi yang hilang sebaiknya digantikan untuk menjaga fungsi kunyah dan mencegah pergeseran gigi di sekitarnya.',badge:'1–3 Bulan',biaya:BIAYA.tiruan});
+  return {
+    tanggalPeriksa:new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}),
+    namaPasien:document.getElementById('namaPasien').value.trim(),
+    noHp:document.getElementById('noHp').value.trim(),
+    usia:document.getElementById('usia').value.trim(),
+    klinik:document.getElementById('klinik').value,
+    dokterNama:document.getElementById('dokterNama').value.trim(),
+    keluhan:document.getElementById('keluhan').value.trim(),
+    tindakan:tindakan.join(', '),
+    gigiB:sorted(SEL.b).join(','),gigiC:sorted(SEL.c).join(','),
+    gigiS:sorted(SEL.s).join(','),gigiO:sorted(SEL.o).join(','),
+    statusKarang:STAT.karang,noteKarang:document.getElementById('note-karang').value.trim(),
+    statusSusunan:STAT.susunan,noteSusunan:document.getElementById('note-susunan').value.trim(),
+    statusBungsu:STAT.bungsu,noteBungsu:document.getElementById('note-bungsu').value.trim(),
+    catatanDokter:document.getElementById('catatanDokter').value.trim(),
+    tips:JSON.stringify(tips),prioritas:JSON.stringify(prioritas),
+  };
+}
+
+/* ===================================================================
+   GANTI dengan Web App URL hasil deploy Apps Script (Code.gs).
+   Ingat: Deploy → Manage deployments → ikon pensil (Edit) → New version.
+   JANGAN "New deployment" — URL akan berubah dan form ini rusak.
+   =================================================================== */
+const WEBAPP_URL='https://script.google.com/macros/s/AKfycbw_CUx4BM_FMsMHp6YVs1GaA_ynPw4zpxzCTpfdtTHzqS4fKUxbuXr3pbxy59z7qoSqUg/exec';
+
+let lastReport = null;   // simpan data + id hasil preview untuk dipakai saat Kirim
 
 function resetForm(){
   // Kosongkan input teks
@@ -352,9 +471,8 @@ function resetForm(){
   STAT.karang=''; STAT.susunan=''; STAT.bungsu='';
   document.querySelectorAll('.sopt').forEach(b=>b.className='sopt');
   document.querySelectorAll('[id^="note-wrap-"]').forEach(w=>w.classList.remove('show'));
-  // Reset template catatan dokter
-  activeTpls.clear();
-  document.querySelectorAll('.tpl-btn.active, .tpl.active').forEach(b=>b.classList.remove('active'));
+  // Sembunyikan hint hasil auto-generate catatan
+  const gh=document.getElementById('generate-hint'); if(gh) gh.style.display='none';
   // Reset tips: sisakan satu baris kosong
   const tc=document.getElementById('tips-container');
   if(tc){ tc.innerHTML=''; addTip(); }
@@ -363,44 +481,6 @@ function resetForm(){
   // Kembali ke atas halaman
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
-function collect(){
-  const tindakan=[...document.querySelectorAll('.chk input:checked')].map(cb=>cb.value);
-  const tips=[...document.querySelectorAll('#tips-container input')].map(i=>i.value.trim()).filter(Boolean);
-  const sorted=arr=>[...arr].sort((a,b)=>a-b);
-  const prioritas=[];
-  if(SEL.s.size>0) prioritas.push({nama:`Perawatan Saraf (${sorted(SEL.s).join(', ')})`,detail:`Gigi ${sorted(SEL.s).join(', ')} — lubang sudah mencapai area saraf, perlu segera ditangani.`,badge:'Segera'});
-  if(SEL.b.size>0) prioritas.push({nama:`Tambalan (${SEL.b.size} Gigi: ${sorted(SEL.b).join(', ')})`,detail:`Gigi ${sorted(SEL.b).join(', ')} perlu ditambal sebelum lubang meluas lebih dalam.`,badge:'Segera'});
-  if(SEL.c.size>0) prioritas.push({nama:`Pencabutan Gigi (${sorted(SEL.c).join(', ')})`,detail:`Gigi ${sorted(SEL.c).join(', ')} perlu dicabut sesuai rekomendasi dokter.`,badge:'Segera'});
-  if(STAT.karang==='Karang gigi banyak') prioritas.push({nama:'Scaling (Karang Gigi Banyak)',detail:'Karang gigi perlu segera dibersihkan secara menyeluruh.',badge:'Segera'});
-  if(STAT.karang==='Karang gigi sedang') prioritas.push({nama:'Scaling Lanjutan',detail:'Karang gigi di beberapa area perlu dibersihkan lebih lanjut.',badge:'3 Bulan'});
-  if(STAT.karang==='Tidak ada karang gigi') prioritas.push({nama:'Scaling Rutin',detail:'Kondisi karang gigi baik. Tetap jaga dengan scaling rutin setiap 6 bulan.',badge:'6 Bulan'});
-  if(['Ada tanda awal masalah','Memerlukan pemeriksaan lebih lanjut','Gigi impaksi','Gigi malposisi'].includes(STAT.bungsu)) prioritas.push({nama:`Evaluasi Gigi Bungsu (${STAT.bungsu})`,detail:'Konsultasikan kondisi gigi bungsu untuk rencana penanganan lebih lanjut.',badge:'1–3 Bulan'});
-  if(STAT.susunan==='Susunan gigi tidak rapi (maloklusi)') prioritas.push({nama:'Konsultasi Ortodonti',detail:'Susunan gigi tidak rapi perlu dievaluasi oleh dokter ortodonti.',badge:'1–3 Bulan'});
-  if(SEL.o.size>0) prioritas.push({nama:`Gigi Tiruan / Implan (${SEL.o.size} Gigi: ${sorted(SEL.o).join(', ')})`,detail:'Gigi yang hilang sebaiknya digantikan untuk menjaga fungsi kunyah dan kesehatan mulut.',badge:'1–3 Bulan'});
-  return {
-    tanggalPeriksa:new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}),
-    namaPasien:document.getElementById('namaPasien').value.trim(),
-    noHp:document.getElementById('noHp').value.trim(),
-    usia:document.getElementById('usia').value.trim(),
-    klinik:document.getElementById('klinik').value,
-    dokterNama:document.getElementById('dokterNama').value.trim(),
-    keluhan:document.getElementById('keluhan').value.trim(),
-    tindakan:tindakan.join(', '),
-    gigiB:sorted(SEL.b).join(','),gigiC:sorted(SEL.c).join(','),
-    gigiS:sorted(SEL.s).join(','),gigiO:sorted(SEL.o).join(','),
-    statusKarang:STAT.karang,noteKarang:document.getElementById('note-karang').value.trim(),
-    statusSusunan:STAT.susunan,noteSusunan:document.getElementById('note-susunan').value.trim(),
-    statusBungsu:STAT.bungsu,noteBungsu:document.getElementById('note-bungsu').value.trim(),
-    catatanDokter:document.getElementById('catatanDokter').value.trim(),
-    tips:JSON.stringify(tips),prioritas:JSON.stringify(prioritas),
-  };
-}
-
-/* GANTI dengan Web App URL hasil deploy Apps Script (Code.gs) */
-const WEBAPP_URL='https://script.google.com/macros/s/AKfycbw_CUx4BM_FMsMHp6YVs1GaA_ynPw4zpxzCTpfdtTHzqS4fKUxbuXr3pbxy59z7qoSqUg/exec';
-
-let lastReport = null;   // simpan data + id hasil preview untuk dipakai saat Kirim
 
 async function previewForm(){
   const data=collect();
@@ -452,7 +532,6 @@ async function sendForm(){
         : 'Status pengiriman: '+(r.wa||'cek manual')+'. Kamu bisa salin link di bawah dan kirim manual.';
       kirim.textContent='✓ Terkirim';
       kirim.disabled=true;
-      // Tampilkan tombol Input Pasien Baru
       const baru=document.getElementById('modal-baru');
       if(baru) baru.style.display='flex';
     } else {
@@ -470,14 +549,23 @@ function inputBaru(){
   resetForm();
 }
 
-function copyLink(){navigator.clipboard.writeText(document.getElementById('modal-link').textContent);}
+function copyLink(){
+  const t=document.getElementById('modal-link').textContent;
+  navigator.clipboard.writeText(t).then(()=>{
+    const b=[...document.querySelectorAll('.btn-mx')].find(x=>x.textContent.indexOf('Salin')>-1);
+    if(b){ const o=b.textContent; b.textContent='✓ Tersalin!'; setTimeout(()=>b.textContent=o,2000); }
+  });
+}
+
 function closeModal(){
   document.getElementById('modal').classList.remove('show');
   // reset modal & tombol kirim untuk rapor berikutnya
   const kirim=document.getElementById('btn-kirim');
-  kirim.textContent='📤 Kirim ke WA Pasien & Klinik'; kirim.disabled=false;
+  if(kirim){ kirim.textContent='📤 Kirim ke WA Pasien & Klinik'; kirim.disabled=false; }
   document.querySelector('.modal-icon').textContent='📄';
   document.querySelector('.modal-title').textContent='Rapor Siap Dipreview';
+  const sub=document.getElementById('modal-sub');
+  if(sub) sub.textContent='Rapor sudah dibuka di tab baru. Periksa dulu, kalau sudah benar klik "Kirim ke WA". Kalau ada yang salah, tutup dan perbaiki di form.';
   const baru=document.getElementById('modal-baru');
   if(baru) baru.style.display='none';
   lastReport=null;
@@ -498,7 +586,6 @@ buildGrids();
   }
   window.addEventListener('load', kirimTinggi);
   window.addEventListener('resize', kirimTinggi);
-  // Kirim ulang saat isi berubah (tambah tips, pilih gigi, dsb.)
   if (window.ResizeObserver) {
     new ResizeObserver(kirimTinggi).observe(document.body);
   } else {
