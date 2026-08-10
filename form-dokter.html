@@ -134,7 +134,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
     <div class="field"><label>No. WhatsApp</label><input type="tel" id="noHp" placeholder="08xxxxxxxxxx"></div>
     <div class="field"><label>Usia</label><input type="number" id="usia" placeholder="25" min="1" max="120"></div>
     <div class="field"><label>Klinik</label>
-      <select id="klinik"><option value="">— Pilih Klinik —</option><option>MHDC Kemang</option><option>MHDC Kelapa Gading</option><option>MHDC Pondok Indah</option><option>MHDC Bintaro</option><option>Medikids Kemang</option><option>Medikids BSD</option></select>
+      <select id="klinik"><option value="">— Pilih Klinik —</option><option>Test</option><option>MHDC Bulog</option><option>MHDC Kalibata City</option><option>MHDC Menara Sentraya</option><option>MHDC Wisma 46</option><option>Medikids Batam</option><option>Medikids Bekasi</option><option>Medikids Bintaro</option><option>Medikids Bogor</option><option>Medikids BSD</option><option>Medikids Cibinong</option><option>Medikids Cibubur</option><option>Medikids Cikarang</option><option>Medikids Cikupa</option><option>Medikids Cilegon</option><option>Medikids Cipondoh</option><option>Medikids Dago</option><option>Medikids Depok</option><option>Medikids Grand Wisata</option><option>Medikids Green Terrace</option><option>Medikids JGC</option><option>Medikids Kalimalang</option><option>Medikids Karawang</option><option>Medikids Karawaci</option><option>Medikids Kebon Jeruk</option><option>Medikids Kemang</option><option>Medikids Lebak Bulus</option><option>Medikids Makassar</option><option>Medikids Malang</option><option>Medikids Padang</option><option>Medikids Palembang</option><option>Medikids Pancoran Mas</option><option>Medikids Pondok Indah</option><option>Medikids Rawamangun</option><option>Medikids Rempoa</option><option>Medikids RSBL</option><option>Medikids Sawangan</option><option>Medikids Semarang</option><option>Medikids Serpong (Ciater BSD)</option><option>Medikids Solo</option><option>Medikids Sunter</option><option>Medikids Surabaya</option></select>
     </div>
     <div class="field"><label>Dokter Pemeriksa</label><input type="text" id="dokterNama" placeholder="drg. Nama Dokter, Sp.KG"></div>
   </div>
@@ -260,6 +260,15 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
   </div>
 </div>
 
+<script src="config.js"></script>
+<script>
+/* Kalau config.js gagal dimuat, beri pesan jelas daripada rusak diam-diam */
+if (typeof CONFIG === 'undefined') {
+  document.addEventListener('DOMContentLoaded', function(){
+    alert('config.js tidak ditemukan.\n\nPastikan file config.js sudah diupload ke repo yang sama (folder yang sama dengan file HTML ini).');
+  });
+}
+</script>
 <script>
 document.getElementById('topbar-date').textContent=
   new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
@@ -395,20 +404,8 @@ function addTip(){
 function rmTip(btn){btn.parentElement.remove();renum();}
 function renum(){document.querySelectorAll('#tips-container .tip-badge').forEach((el,i)=>el.textContent=i+1);}
 
-/* ===================================================================
-   KISARAN BIAYA — tampil di halaman rapor pasien.
-   Ubah angka di sini saja kalau tarif berubah. Kosongkan ('')
-   kalau tidak ingin menampilkan biaya untuk item tersebut.
-   =================================================================== */
-const BIAYA = {
-  saraf     : 'Rp 1.500.000 – Rp 3.500.000 / gigi',
-  tambalan  : 'Rp 300.000 – Rp 700.000 / gigi',
-  cabut     : 'Rp 250.000 – Rp 500.000',
-  scaling   : 'Rp 300.000 – Rp 600.000',
-  bungsu    : 'Rp 150.000 – Rp 350.000',
-  ortodonti : 'Rp 150.000 – Rp 350.000',
-  tiruan    : 'Rp 3.000.000 – Rp 15.000.000 (tergantung pilihan)',
-};
+/* Kisaran biaya & URL diambil dari config.js — edit di sana, bukan di sini */
+const BIAYA = (typeof CONFIG !== 'undefined' && CONFIG.BIAYA) ? CONFIG.BIAYA : {};
 
 function collect(){
   const tindakan=[...document.querySelectorAll('.chk input:checked')].map(cb=>cb.value);
@@ -443,12 +440,8 @@ function collect(){
   };
 }
 
-/* ===================================================================
-   GANTI dengan Web App URL hasil deploy Apps Script (Code.gs).
-   Ingat: Deploy → Manage deployments → ikon pensil (Edit) → New version.
-   JANGAN "New deployment" — URL akan berubah dan form ini rusak.
-   =================================================================== */
-const WEBAPP_URL='https://script.google.com/macros/s/AKfycbw_CUx4BM_FMsMHp6YVs1GaA_ynPw4zpxzCTpfdtTHzqS4fKUxbuXr3pbxy59z7qoSqUg/exec';
+/* Web App URL Apps Script — diatur di config.js (CONFIG.API_URL) */
+const WEBAPP_URL = (typeof CONFIG !== 'undefined' && CONFIG.API_URL) ? CONFIG.API_URL : '';
 
 let lastReport = null;   // simpan data + id hasil preview untuk dipakai saat Kirim
 
