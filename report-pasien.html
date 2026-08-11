@@ -66,8 +66,22 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);max-width:430p
 
 /* ODONTOGRAM */
 .odonto-wrap{background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden}
-.odonto-img-area{background:#fff;padding:20px 4px 8px}
+.odonto-img-area{background:#fff;padding:16px 12px 4px;cursor:zoom-in}
 .odonto-img{width:100%;height:auto;display:block;border-radius:4px}
+.odonto-hint{display:flex;align-items:center;justify-content:center;gap:5px;
+  font-family:var(--fh);font-size:10.5px;font-weight:600;color:var(--text-soft);
+  letter-spacing:.04em;text-transform:uppercase;padding:2px 0 12px}
+/* Layar penuh saat gambar diketuk */
+.zoom-overlay{position:fixed;inset:0;background:rgba(20,12,6,.94);z-index:9999;
+  display:none;overflow:auto;-webkit-overflow-scrolling:touch}
+.zoom-overlay.show{display:block}
+.zoom-inner{min-height:100%;display:flex;align-items:center;justify-content:flex-start;padding:56px 16px 24px}
+.zoom-inner img{width:820px;max-width:none;height:auto;border-radius:8px;background:#fff}
+.zoom-close{position:fixed;top:12px;right:12px;z-index:10000;width:38px;height:38px;
+  border:none;border-radius:50%;background:rgba(255,255,255,.92);color:#2A1A0E;
+  font-size:20px;line-height:1;cursor:pointer;font-family:var(--fb)}
+.zoom-tip{position:fixed;top:18px;left:16px;z-index:10000;color:rgba(255,255,255,.85);
+  font-family:var(--fh);font-size:11px;letter-spacing:.04em}
 .odonto-lower{padding:18px 12px 18px}
 .arch-block{margin-bottom:14px}
 .arch-block:last-of-type{margin-bottom:0}
@@ -203,6 +217,12 @@ body{font-family:var(--fb);background:var(--bg);color:var(--text);max-width:430p
   <div class="section-eyebrow">Hasil Pemeriksaan</div>
   <div class="section-title">Kondisi Gigi Kamu</div>
   <div class="odonto-wrap">
+    <div class="odonto-img-area" id="r-odonto-img">
+      <img class="odonto-img" src="odontogram.jpg"
+           alt="Peta nomor gigi — rahang atas dan rahang bawah">
+    </div>
+    <div class="odonto-hint">👆 Ketuk gambar untuk memperbesar</div>
+
     <div class="odonto-lower">
       <div class="arch-block">
         <div class="arch-lbl">Rahang Atas</div>
@@ -553,10 +573,35 @@ function setupCTA(){
     : 'Halo, saya mau booking treatment lanjutan sesuai rekomendasi di dental report saya.';
   a.href = 'https://wa.me/' + no + '?text=' + encodeURIComponent(pesan);
 }
+/* Gambar peta gigi: ketuk untuk memperbesar */
+(function(){
+  var pemicu = document.getElementById('r-odonto-img');
+  var overlay = document.getElementById('r-zoom');
+  var tutup = document.getElementById('r-zoom-close');
+  if(!pemicu || !overlay) return;
+  function buka(){ overlay.classList.add('show'); document.body.style.overflow='hidden'; }
+  function tutupZoom(){ overlay.classList.remove('show'); document.body.style.overflow=''; }
+  pemicu.addEventListener('click', buka);
+  document.querySelector('.odonto-hint').addEventListener('click', buka);
+  if(tutup) tutup.addEventListener('click', tutupZoom);
+  overlay.addEventListener('click', function(e){
+    if(e.target === overlay || e.target.className === 'zoom-inner') tutupZoom();
+  });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') tutupZoom(); });
+})();
+
 setupCTA();
 
 loadReport();
 </script>
+
+<div class="zoom-overlay" id="r-zoom">
+  <span class="zoom-tip">Geser untuk melihat seluruh gigi</span>
+  <button class="zoom-close" id="r-zoom-close" aria-label="Tutup">&times;</button>
+  <div class="zoom-inner">
+    <img src="odontogram.jpg" alt="Peta nomor gigi diperbesar">
+  </div>
+</div>
 
 </body>
 </html>
